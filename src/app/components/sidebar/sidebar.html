@@ -1,0 +1,30 @@
+<aside class="sidebar" [class.closed]="!isOpen">
+  <nav class="nav-menu">
+    <button
+      class="nav-item"
+      [class.active]="activeSection === 'dashboard'"
+      (click)="selectSection.emit('dashboard')"
+    >
+      <i class="fas fa-chart-pie"></i>
+      <span>Resumen General</span>
+    </button>
+
+    <button
+      class="nav-item"
+      [class.active]="activeSection === 'form'"
+      (click)="selectSection.emit('form')"
+    >
+      <i class="fas fa-plus-circle"></i>
+      <span>Registrar Producto</span>
+    </button>
+
+    <button
+      class="nav-item"
+      [class.active]="activeSection === 'catalog'"
+      (click)="selectSection.emit('catalog')"
+    >
+      <i class="fas fa-boxes"></i>
+      <span>Catálogo de Productos</span>
+    </button>
+  </nav>
+</aside>

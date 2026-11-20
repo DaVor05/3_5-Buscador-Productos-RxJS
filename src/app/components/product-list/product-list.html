@@ -1,0 +1,65 @@
+<section class="list-section" *ngIf="productService.filteredProducts$ | async as products">
+  <div class="list-header">
+    <h3>Listado de Productos</h3>
+    <div class="view-toggle">
+      <button [class.active]="viewMode === 'cards'" (click)="viewMode = 'cards'">
+        <i class="fas fa-th-large"></i> Tarjetas
+      </button>
+      <button [class.active]="viewMode === 'table'" (click)="viewMode = 'table'">
+        <i class="fas fa-table"></i> Tabla
+      </button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="products.length > 0; else emptyState">
+    <!-- Vista de Tarjetas -->
+    <div class="cards-grid" *ngIf="viewMode === 'cards'">
+      <article class="card" *ngFor="let product of products">
+        <div class="card-img-wrap">
+          <img [src]="product.image" [alt]="product.name" />
+          <span class="badge">{{ product.category }}</span>
+        </div>
+        <div class="card-body">
+          <h4>{{ product.name }}</h4>
+          <p>{{ product.description }}</p>
+          <div class="card-bottom">
+            <strong class="price">${{ product.price }}</strong>
+            <button class="btn-delete" (click)="onDelete(product.id)">Eliminar</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Vista de Tabla -->
+    <div class="table-wrap" *ngIf="viewMode === 'table'">
+      <table class="products-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Categoría</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td><strong>{{ product.name }}</strong></td>
+            <td><span class="badge-inline">{{ product.category }}</span></td>
+            <td>{{ product.description }}</td>
+            <td><strong>${{ product.price }}</strong></td>
+            <td>
+              <button class="btn-delete" (click)="onDelete(product.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+
+  <ng-template #emptyState>
+    <div class="empty-box">
+      <p>No se encontraron productos con los filtros actuales.</p>
+    </div>
+  </ng-template>
+</section>

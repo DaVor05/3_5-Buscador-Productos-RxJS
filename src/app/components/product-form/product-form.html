@@ -1,0 +1,43 @@
+<section class="form-panel">
+  <h3><i class="fas fa-plus-circle"></i> Registrar Nuevo Producto</h3>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form-grid">
+    <div class="field">
+      <label for="name">Nombre</label>
+      <input id="name" type="text" formControlName="name" placeholder="Ej. Teclado Mecánico" />
+    </div>
+
+    <div class="field">
+      <label for="category">Categoría</label>
+      <select id="category" formControlName="category">
+        <option value="Muebles">Muebles</option>
+        <option value="Accesorios">Accesorios</option>
+        <option value="Calzado">Calzado</option>
+        <option value="Electrónica">Electrónica</option>
+        <option value="Bolsos">Bolsos</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="price">Precio ($)</label>
+      <input id="price" type="number" formControlName="price" min="1" />
+    </div>
+
+    <div class="field">
+      <label for="image">URL de Imagen (opcional)</label>
+      <input id="image" type="text" formControlName="image" placeholder="https://..." />
+    </div>
+
+    <div class="field full-width">
+      <label for="description">Descripción</label>
+      <input id="description" type="text" formControlName="description" placeholder="Breve descripción del producto" />
+    </div>
+
+    <div class="form-actions full-width">
+      <button type="submit" class="btn-submit" [disabled]="productForm.invalid">
+        Agregar Producto
+      </button>
+      <span class="success-text" *ngIf="savedMessage">¡Producto agregado al catálogo!</span>
+    </div>
+  </form>
+</section>

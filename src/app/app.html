@@ -1,1 +1,27 @@
-<app-product-search></app-product-search>
+<div class="app-shell">
+  <app-header (toggleSidebar)="sidebarOpen = !sidebarOpen"></app-header>
+
+  <div class="app-body">
+    <app-sidebar
+      [activeSection]="activeSection"
+      [isOpen]="sidebarOpen"
+      (selectSection)="activeSection = $event"
+    ></app-sidebar>
+
+    <main class="dashboard-content">
+      <app-statistics *ngIf="activeSection === 'dashboard'"></app-statistics>
+
+      <app-product-form
+        *ngIf="activeSection === 'dashboard' || activeSection === 'form'"
+      ></app-product-form>
+
+      <app-product-search
+        *ngIf="activeSection === 'dashboard' || activeSection === 'catalog'"
+      ></app-product-search>
+
+      <app-product-list
+        *ngIf="activeSection === 'dashboard' || activeSection === 'catalog'"
+      ></app-product-list>
+    </main>
+  </div>
+</div>

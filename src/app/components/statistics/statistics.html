@@ -1,0 +1,21 @@
+<section class="stats-grid" *ngIf="productService.stats$ | async as stats">
+  <div class="stat-card">
+    <span class="stat-label">Total de Productos</span>
+    <strong class="stat-value">{{ stats.total }}</strong>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">Precio Promedio</span>
+    <strong class="stat-value">${{ stats.averagePrice }}</strong>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">Precio Mínimo</span>
+    <strong class="stat-value">${{ stats.minPrice }}</strong>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">Precio Máximo</span>
+    <strong class="stat-value">${{ stats.maxPrice }}</strong>
+  </div>
+</section>
